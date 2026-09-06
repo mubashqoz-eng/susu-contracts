@@ -4,15 +4,17 @@
 
 [![CI](https://github.com/susu-labs/susu-contracts/actions/workflows/ci.yml/badge.svg)](https://github.com/susu-labs/susu-contracts/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Status: Testnet beta](https://img.shields.io/badge/status-testnet%20beta-orange.svg)](#project-status)
-[![Audit: not yet reviewed](https://img.shields.io/badge/audit-not%20yet%20reviewed-critical.svg)](#security)
+[![Status: Testnet · reviewed](https://img.shields.io/badge/status-testnet%20%C2%B7%20reviewed-orange.svg)](#project-status)
+[![Mainnet: readiness implemented · deployment gated](https://img.shields.io/badge/mainnet-readiness%20implemented%20%C2%B7%20deployment%20gated-yellow.svg)](#project-status)
 
 Soroban (Rust/Wasm) smart contracts for **Susu Protocol** — a non-custodial rotating savings
 protocol on Stellar. These contracts are the sole financial authority of the system: they hold
 every group's funds and release them only to the recipient the schedule names.
 
-> **This code is unaudited and not mainnet-ready.** It is deployed to Stellar Testnet, where the
-> balances are worthless. Read [Project status](#project-status) before you read anything else.
+> **Reviewed by the maintainer, and not independently audited.** It is deployed to Stellar Testnet,
+> where the balances are worthless. Mainnet readiness is implemented and mechanically verified, but
+> deployment is deliberately gated until the attestations are satisfied. Read
+> [Project status](#project-status) before you read anything else.
 
 ---
 
@@ -32,17 +34,17 @@ without affecting a single balance.
 
 ## Project status
 
-**Testnet beta. Not audited. Not mainnet-ready.**
+**Testnet. Reviewed by the maintainer. Mainnet readiness implemented — deployment gated on attestations.**
 
 All twelve planned build phases are implemented, and the canonical lifecycle has been executed
 end-to-end against the deployed Testnet contracts with balances asserted from chain state.
 
-Two things stand between this and mainnet. Neither of them is code:
+Two gates stand between this and Mainnet. The machinery for both is written; neither is satisfied:
 
 | Gate | State |
 | --- | --- |
-| **Independent security review** | **Not commissioned.** What a reviewer needs is written and waiting in [`docs/AUDIT_SCOPE.md`](docs/AUDIT_SCOPE.md), and the code to review is frozen at the annotated `audit-freeze-1` tag. |
-| **Mainnet readiness** | **Implemented, and currently `NO-GO` — by design.** [`scripts/check-mainnet-readiness.sh`](scripts/check-mainnet-readiness.sh) verifies the mechanical gates and refuses to pass while the audit and the approval attestation are absent. |
+| **Independent security review** | **Not commissioned. The maintainer has reviewed this code, which is a different claim.** What an independent reviewer needs is written and waiting in [`docs/AUDIT_SCOPE.md`](docs/AUDIT_SCOPE.md), and the code to review is frozen at the annotated `audit-freeze-1` tag. |
+| **Mainnet readiness** | **Implemented and mechanically verified; `NO-GO` until the attestations are satisfied.** [`scripts/check-mainnet-readiness.sh`](scripts/check-mainnet-readiness.sh) verifies the mechanical gates and refuses to pass while the audit and the approval attestation are absent. |
 
 Nothing is deployed to Mainnet, and the code refuses to write there.
 
@@ -191,7 +193,7 @@ require human review before merge — a green CI run is not sufficient for those
 
 ## Security
 
-Contracts are **unaudited**. See [`SECURITY.md`](SECURITY.md) for the disclosure process.
+Contracts have been **reviewed by the maintainer, not by an independent auditor**. See [`SECURITY.md`](SECURITY.md) for the disclosure process.
 
 ## License
 
